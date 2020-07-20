@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import os
 import re
 import subprocess
 
@@ -14,8 +15,10 @@ def download(remote_path, local_path):
 def download_model_range(args):
   for model_number in range(args.start, args.end + 1, args.skip):
     model_name = 'G_{}.pth'.format(model_number)
-    remote_model_name = '{}/{}'.format(args.remote, model_name)
-    download(remote_model_name, args.local)
+    local_name = os.path.join(args.local, model_name)
+    if not os.path.exists(local_name):
+      remote_model_name = '{}/{}'.format(args.remote, model_name)
+      download(remote_model_name, args.local)
 
 def parse_args():
   parser = argparse.ArgumentParser('Split audio into ingestible chunks')
@@ -33,4 +36,5 @@ def parse_args():
   return args
 
 args = parse_args()
+download_model_range(args)
 
