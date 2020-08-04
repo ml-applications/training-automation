@@ -5,6 +5,7 @@
 
 set -euxo pipefail
 
+# Model name is a string identifier in [a-z\-]
 model_name=${1}
 
 mkdir -p /home/ubuntu/data
@@ -22,5 +23,9 @@ cd "${code_dir}"
 python3 -m venv python
 source python/bin/activate
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requirements2.txt
+
+python reconfigure.py --speaker_dir ${model_name}
+
+echo "done"
 
