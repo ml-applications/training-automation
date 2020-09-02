@@ -32,7 +32,7 @@ mv "glow-tts/" "${code_dir}"
 cd "${code_dir}"
 
 # Make sure the repo is in its final directory location, otherwise venv hates you
-python3 -m venv python
+python3.7 -m venv python
 source python/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -44,9 +44,9 @@ pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cud
 popd
 
 git submodule init; git submodule update
-pushd monotonic_align; python3 setup.py build_ext --inplace; popd
+pushd monotonic_align; python3.7 setup.py build_ext --inplace; popd
 
-python3 reconfigure.py --speaker_dir ${model_name}
+python3.7 reconfigure.py --speaker_dir ${model_name}
 
 echo "done"
 
