@@ -18,8 +18,9 @@ sudo apt-get install \
   libsndfile1 \
   libssl-dev \
   python-dev \
-  python3-dev \
-  python3-venv \
+  python3.7 \
+  python3.7-dev \
+  python3.7-venv \
   silversearcher-ag
 
 cd /home/ubuntu/code
@@ -43,9 +44,9 @@ pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cud
 popd
 
 git submodule init; git submodule update
-pushd monotonic_align; python setup.py build_ext --inplace; popd
+pushd monotonic_align; python3 setup.py build_ext --inplace; popd
 
-python reconfigure.py --speaker_dir ${model_name}
+python3 reconfigure.py --speaker_dir ${model_name}
 
 echo "done"
 
