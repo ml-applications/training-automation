@@ -21,6 +21,7 @@ sudo apt-get install \
   python3.7 \
   python3.7-dev \
   python3.7-venv \
+  ripgrep \
   silversearcher-ag
 
 cd /home/ubuntu/code
@@ -35,7 +36,7 @@ cd "${code_dir}"
 python3.7 -m venv python
 source python/bin/activate
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requirements-lambda.txt
 
 git clone https://github.com/NVIDIA/apex.git
 pushd apex
