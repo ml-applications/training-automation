@@ -67,7 +67,7 @@ export CPP=g++-7
 export CXX=g++-7
 export LD=g++-7
 export CUDA_HOME=/usr/local/cuda-10.0
-export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/lib:/usr/lib64:/usr/local/lib
 
 git clone https://github.com/NVIDIA/apex.git
 pushd apex
