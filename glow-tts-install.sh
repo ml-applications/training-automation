@@ -8,8 +8,21 @@ set -euxo pipefail
 # Model name is a string identifier in [a-z\-]
 model_name=${1}
 
+function install_cuda() {
+  CUDA_URL="https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda_10.0.130_410.48_linux"
+  CUDA_PATH="${HOME}/cuda.run"
+  if [ ! -f $CUDA_PATH ]; then
+    wget $CUDA_URL -O ${HOME}/cuda.run;
+  fi
+  if [ ! -d "/usr/local/cuda-10.0/" ]; then
+    sudo sh $CUDA_PATH --silent --toolkit --override;
+  fi
+}
+
 mkdir -p /home/ubuntu/data
 mkdir -p /home/ubuntu/code
+
+install_cuda;
 
 sudo apt-get install \
   -y \
@@ -37,6 +50,24 @@ python3.7 -m venv python
 source python/bin/activate
 pip install --upgrade pip
 pip install -r requirements-lambda.txt
+
+# Here we need to use GCC 7 instead of 9.
+# Cuda 10 doesn't like GCC beyond version 7
+sudo rm /usr/bin/gcc
+sudo rm /usr/bin/g++
+sudo ln -s /usr/bin/gcc-7 /usr/bin/gcc
+sudo ln -s /usr/bin/g++-7 /usr/bin/g++
+
+# TODO: Use checks here to not change the symlinks if already updated.
+gcc --version
+g++ --version
+
+export CC=gcc-7
+export CPP=g++-7
+export CXX=g++-7
+export LD=g++-7
+export CUDA_HOME=/usr/local/cuda-10.0
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
 
 git clone https://github.com/NVIDIA/apex.git
 pushd apex

@@ -11,13 +11,13 @@ TORCHVISION_PATH="${HOME}/${TORCHVISION_WHL}"
 VIRTUALENV_PATH="${HOME}/venv"
 
 function install_cuda() {
-    CUDA_URL="https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda_10.0.130_410.48_linux"
-    if [ ! -f $CUDA_PATH ]; then
-	wget $CUDA_URL -O ${HOME}/cuda.run;
-    fi
-    if [ ! -d "/usr/local/cuda-10.0/" ]; then
-       sudo sh $CUDA_PATH --silent --toolkit --override;
-    fi
+  CUDA_URL="https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda_10.0.130_410.48_linux"
+  if [ ! -f $CUDA_PATH ]; then
+    wget $CUDA_URL -O ${HOME}/cuda.run;
+  fi
+  if [ ! -d "/usr/local/cuda-10.0/" ]; then
+    sudo sh $CUDA_PATH --silent --toolkit --override;
+  fi
 }
 
 function create_virtualenv() {
