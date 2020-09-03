@@ -72,7 +72,8 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/lib:/usr/lib64:/usr/local
 git clone https://github.com/NVIDIA/apex.git
 pushd apex
 git checkout 37cdaf4
-pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+#pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+CC=gcc-7 CPP=g++-7 CXX=g++-7 LD=g++-7 CUDA_HOME=/usr/local/cuda-10.0 LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/lib:/usr/lib64:/usr/local/lib  pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 popd
 
 git submodule init; git submodule update
