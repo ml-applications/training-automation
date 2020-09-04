@@ -27,7 +27,11 @@ install_cuda;
 sudo apt-get install \
   -y \
   build-essential \
+  g++-7 \
+  gcc-7 \
+  libc++-7-dev \
   libffi-dev \
+  libgcc-7-dev \
   libsndfile1 \
   libssl-dev \
   python-dev \
@@ -49,19 +53,16 @@ cd "${code_dir}"
 python3.7 -m venv python
 source python/bin/activate
 pip install --upgrade pip
-#pip install -r requirements-lambda.txt
 pip install -r requirements.txt
 
 # Here we need to use GCC 7 instead of 9.
 # Cuda 10 doesn't like GCC beyond version 7
-sudo rm /usr/bin/gcc
-sudo rm /usr/bin/g++
-sudo ln -s /usr/bin/gcc-7 /usr/bin/gcc
-sudo ln -s /usr/bin/g++-7 /usr/bin/g++
-
-# TODO: Use checks here to not change the symlinks if already updated.
-gcc --version
-g++ --version
+if [ "$(realpath $(which gcc))" != "/usr/bin/x86_64-linux-gnu-gcc-7" ]; then
+  sudo rm /usr/bin/gcc
+  sudo rm /usr/bin/g++
+  sudo ln -s /usr/bin/gcc-7 /usr/bin/gcc
+  sudo ln -s /usr/bin/g++-7 /usr/bin/g++
+fi
 
 export CC=gcc-7
 export CPP=g++-7
@@ -74,7 +75,6 @@ git clone https://github.com/NVIDIA/apex.git
 pushd apex
 git checkout 37cdaf4
 pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
-#CC=gcc-7 CPP=g++-7 CXX=g++-7 LD=g++-7 CUDA_HOME=/usr/local/cuda-10.0 LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/lib:/usr/lib64:/usr/local/lib  pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 popd
 
 git submodule init; git submodule update
