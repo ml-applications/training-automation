@@ -37,7 +37,7 @@ mv "melgan-seungwonpark/" "${code_dir}"
 cd "${code_dir}"
 
 # Make sure the repo is in its final directory location, otherwise venv hates you
-python3 -m venv python
+python3.7 -m venv python
 source python/bin/activate
 pip install --upgrade pip
 pip install -r requirements2.txt
