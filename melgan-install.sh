@@ -11,6 +11,23 @@ model_name=${1}
 mkdir -p /home/ubuntu/data
 mkdir -p /home/ubuntu/code
 
+sudo apt-get install \
+  -y \
+  build-essential \
+  g++-7 \
+  gcc-7 \
+  libc++-7-dev \
+  libffi-dev \
+  libgcc-7-dev \
+  libsndfile1 \
+  libssl-dev \
+  python-dev \
+  python3.7 \
+  python3.7-dev \
+  python3.7-venv \
+  ripgrep \
+  silversearcher-ag
+
 cd /home/ubuntu/code
 git clone https://github.com/ml-applications/melgan-seungwonpark.git
 
