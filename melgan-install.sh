@@ -22,9 +22,10 @@ sudo apt-get install \
   libsndfile1 \
   libssl-dev \
   python-dev \
+  python3-venv \
   python3.7 \
   python3.7-dev \
-  python3-venv \
+  python3.7-venv \
   ripgrep \
   silversearcher-ag
 
