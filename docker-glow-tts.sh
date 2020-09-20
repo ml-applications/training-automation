@@ -7,7 +7,7 @@ set -euxo pipefail
 model_name=${1}
 
 # Current artifact
-docker_image="glow-tts-docker:3fbafc9f3dd8"
+docker_image="glow-tts-docker:6a7f8a67800f"
 
 mkdir -p /home/ubuntu/mount
 mkdir -p /home/ubuntu/code
@@ -28,7 +28,7 @@ sudo usermod -aG docker ${USER}
 # Reevaluate group membership
 #su -s ${USER}
 
-docker pull docker.pkg.github.com/ml-applications/glow-tts-docker/${docker_image}
+docker pull ghcr.io/ml-applications/${docker_image}
 
 docker volume create \
   --driver local \
