@@ -19,6 +19,15 @@ sudo apt-get install \
   ripgrep \
   silversearcher-ag
 
+# Docker permissions
+sudo groupadd docker
+
+# Add current user to the docker group
+sudo usermod -aG docker ${USER}
+
+# Reevaluate group membership
+su -s ${USER}
+
 docker pull docker.pkg.github.com/ml-applications/glow-tts-docker/${docker_image}
 
 docker volume create \
