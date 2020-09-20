@@ -7,42 +7,41 @@ set -euxo pipefail
 model_name=${1}
 
 # Current artifact
-docker_tag="d9ca2f0c1e46"
+docker_tag="4f663d2a0a81"
 
 docker_image="glow-tts-docker:${docker_tag}"
 
-mkdir -p /home/ubuntu/mount
-mkdir -p /home/ubuntu/code
+#    mkdir -p /home/ubuntu/mount
+#    
+#    sudo apt-get install \
+#      -y \
+#      docker \
+#      docker.io \
+#      ripgrep \
+#      silversearcher-ag
+#    
+#    # Docker permissions
+#    sudo groupadd -f docker
+#    
+#    # Add current user to the docker group
+#    sudo usermod -aG docker ${USER}
+#    
+#    # Reevaluate group membership
+#    #su -s ${USER}
+#    
+#    # Fix docker runtime wrt GPUs
+#    distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+#    
+#    curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+#    
+#    curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list \
+#      | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+#    
+#    sudo apt-get update
+#    sudo apt-get install -y nvidia-docker2
 
-sudo apt-get install \
-  -y \
-  docker \
-  docker.io \
-  ripgrep \
-  silversearcher-ag
-
-# Docker permissions
-sudo groupadd -f docker
-
-# Add current user to the docker group
-sudo usermod -aG docker ${USER}
-
-# Reevaluate group membership
-#su -s ${USER}
-
-# Fix docker runtime wrt GPUs
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
-
-curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list \
-  | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-
-sudo apt-get update
-sudo apt-get install -y nvidia-docker2
-
-# TODO: Need a way of doing this once and only once, in a non-destructive way.
-#sudo systemctl restart docker
+#    # TODO: Need a way of doing this once and only once, in a non-destructive way.
+#    #sudo systemctl restart docker
 
 docker pull ghcr.io/ml-applications/${docker_image}
 
