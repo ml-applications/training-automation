@@ -15,6 +15,7 @@ mkdir -p /home/ubuntu/code
 sudo apt-get install \
   -y \
   docker \
+  docker.io \
   ripgrep \
   silversearcher-ag
 
