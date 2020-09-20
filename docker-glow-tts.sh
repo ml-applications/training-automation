@@ -7,7 +7,9 @@ set -euxo pipefail
 model_name=${1}
 
 # Current artifact
-docker_image="glow-tts-docker:6a7f8a67800f"
+docker_tag="6a7f8a67800f"
+
+docker_image="glow-tts-docker:${docker_tag}"
 
 mkdir -p /home/ubuntu/mount
 mkdir -p /home/ubuntu/code
@@ -44,5 +46,5 @@ docker run \
   -e PRETRAINED_MODEL_DESTINATION_FILENAME=${PRETRAINED_MODEL_DESTINATION_FILENAME} \
   -e PRETRAINED_MODEL_SOURCE_URL=${PRETRAINED_MODEL_SOURCE_URL} \
   -e ARPABET_SOURCE_URL=${ARPABET_SOURCE_URL} \
-  --rm ${docker_image}
+  --rm ${docker_tag}
 
