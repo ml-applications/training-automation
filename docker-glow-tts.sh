@@ -26,7 +26,7 @@ sudo groupadd -f docker
 sudo usermod -aG docker ${USER}
 
 # Reevaluate group membership
-su -s ${USER}
+#su -s ${USER}
 
 docker pull docker.pkg.github.com/ml-applications/glow-tts-docker/${docker_image}
 
