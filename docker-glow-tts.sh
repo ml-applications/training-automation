@@ -60,6 +60,7 @@ docker run \
   -e PRETRAINED_MODEL_SOURCE_URL=${PRETRAINED_MODEL_SOURCE_URL} \
   -e ARPABET_SOURCE_URL=${ARPABET_SOURCE_URL} \
   --rm \
+  --init \
   --gpus all \
   ghcr.io/ml-applications/glow-tts-docker:${docker_tag}
 
