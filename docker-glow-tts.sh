@@ -20,9 +20,7 @@ sudo apt-get install \
   silversearcher-ag
 
 # Docker permissions
-if [ ! $(getent group admin) ]; then
-  sudo groupadd docker
-fi
+sudo groupadd -f docker
 
 # Add current user to the docker group
 sudo usermod -aG docker ${USER}
