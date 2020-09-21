@@ -61,6 +61,7 @@ docker run \
   -e ARPABET_SOURCE_URL=${ARPABET_SOURCE_URL} \
   --rm \
   --init \
+  --ipc=host \
   --gpus all \
   ghcr.io/ml-applications/glow-tts-docker:${docker_tag}
 
