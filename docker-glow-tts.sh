@@ -7,7 +7,7 @@ set -euxo pipefail
 model_name=${1}
 
 # Current artifact
-docker_tag="4f663d2a0a81"
+docker_tag="816a02c09b05"
 
 docker_image="glow-tts-docker:${docker_tag}"
 
