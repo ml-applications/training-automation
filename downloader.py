@@ -9,7 +9,7 @@ REMOTE_HOST_SPEC = re.compile(r'^\w+@[\w\.]+:')
 def download(remote_path, local_path):
   #scp ubuntu@104.171.200.63:/home/ubuntu/code/glow-tts-samuel-l-jackson/logs/base/G_9450.pth .
   command = 'scp {} {}'.format(remote_path, local_path)
-  print(command)
+  print('Command:\n{}'.format(command))
   subprocess.call(command, shell=True)
 
 def download_model_range(args):
