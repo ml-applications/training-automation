@@ -1,5 +1,5 @@
 #!/bin/bash
-# Simple automation of glow-tts training routines
+# Simple automation of melgan-seungwonpark training routines
 
 set -euxo pipefail
 
@@ -7,10 +7,10 @@ set -euxo pipefail
 model_name=${1}
 
 # Current artifact
-# https://github.com/orgs/ml-applications/packages/container/package/glow-tts-docker
-docker_tag="816a02c09b05"
+# https://github.com/orgs/ml-applications/packages/container/package/melgan-seungwonpark-docker
+docker_tag="528f73d133db"
 
-docker_image="glow-tts-docker:${docker_tag}"
+docker_image="melgan-seungwonpark-docker:${docker_tag}"
 
 docker pull ghcr.io/ml-applications/${docker_image}
 
@@ -19,15 +19,14 @@ docker volume create \
   --opt type=none \
   --opt device=/home/ubuntu/mount \
   --opt o=bind \
-  glow_tts_volume
+  melgan_volume
 
 docker run \
-  --mount 'type=volume,src=glow_tts_volume,dst=/mount' \
+  --mount 'type=volume,src=melgan_volume,dst=/mount' \
   -e MOUNT_DIR=/mount \
   -e VOICE=${model_name} \
   -e PRETRAINED_MODEL_DESTINATION_FILENAME=${PRETRAINED_MODEL_DESTINATION_FILENAME} \
   -e PRETRAINED_MODEL_SOURCE_URL=${PRETRAINED_MODEL_SOURCE_URL} \
-  -e ARPABET_SOURCE_URL=${ARPABET_SOURCE_URL} \
   --rm \
   --init \
   --ipc=host \
