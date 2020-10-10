@@ -31,5 +31,5 @@ docker run \
   --init \
   --ipc=host \
   --gpus all \
-  ghcr.io/ml-applications/glow-tts-docker:${docker_tag}
+  ghcr.io/ml-applications/melgan-seungwonpark-docker:${docker_tag}
 
