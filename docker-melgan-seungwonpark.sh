@@ -8,7 +8,7 @@ model_name=${1}
 
 # Current artifact
 # https://github.com/orgs/ml-applications/packages/container/package/melgan-seungwonpark-docker
-docker_tag="528f73d133db"
+docker_tag="dede6d5840d9"
 
 docker_image="melgan-seungwonpark-docker:${docker_tag}"
 
