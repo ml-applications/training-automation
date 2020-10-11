@@ -27,6 +27,7 @@ docker run \
   -e VOICE=${model_name} \
   -e PRETRAINED_MODEL_DESTINATION_FILENAME=${PRETRAINED_MODEL_DESTINATION_FILENAME} \
   -e PRETRAINED_MODEL_SOURCE_URL=${PRETRAINED_MODEL_SOURCE_URL} \
+  -e DATE=${DATE} \
   --rm \
   --init \
   --ipc=host \
