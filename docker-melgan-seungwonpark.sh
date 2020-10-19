@@ -6,9 +6,28 @@ set -euxo pipefail
 # Model name is a string identifier in [a-z\-]
 model_name=${1}
 
+# Optional mount path
+#
+# The mount path uses the following subdirectories:
+#
+#   ${MOUNT_DIR}/training_data/melgan_${VOICE} (training data must be here!)
+#   ${MOUNT_DIR}/checkpoints/${VOICE} (output; auto-managed)
+#   ${MOUNT_DIR}/shared (auto-managed)
+#
+# The mount path can be shared between training instances.
+#
+if [ -z ${2+x} ]; then
+  host_mount_directory="/home/ubuntu/mount"
+else
+  host_mount_directory="${2}"
+fi
+
+echo "Model name: ${model_name}"
+echo "Host mount directory: ${host_mount_directory}"
+
 # Current artifact
 # https://github.com/orgs/ml-applications/packages/container/package/melgan-seungwonpark-docker
-docker_tag="9d69260353ec"
+docker_tag="8d8d4a9fabeb"
 
 docker_image="melgan-seungwonpark-docker:${docker_tag}"
 
