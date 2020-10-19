@@ -36,7 +36,7 @@ docker pull ghcr.io/ml-applications/${docker_image}
 docker volume create \
   --driver local \
   --opt type=none \
-  --opt device=/home/ubuntu/mount \
+  --opt device="${host_mount_directory}" \
   --opt o=bind \
   melgan_volume
 
